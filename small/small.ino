@@ -11,10 +11,10 @@ int SRCLK_Pin = 10; //pin 11 on the 75HC595
 // 0-3 decides which floor to light up
 // 8-23 decides which column to light up 
 boolean registers[numOfRegisterPins];
-boolean floor0[16];
-boolean floor1[16];
-boolean floor2[16];
-boolean floor3[16];
+bool floor0[16];
+bool floor1[16];
+bool floor2[16];
+bool floor3[16];
 
 void setup(){
   pinMode(SER_Pin, OUTPUT);
@@ -126,7 +126,43 @@ void lightUp(bool first[], bool second[], bool third[], bool fourth[], int repea
   }
   
 }
+
+// turn of all floor lights
+void allFloorOff(){
+  for(int i = 0; i < 16; i++){
+    floor0[i] = LOW;
+    floor1[i] = LOW;
+    floor2[i] = LOW;
+    floor3[i] = LOW;
+    
+  } 
+}
+
+//pattern of moving rows
 void switchingRows(){
+  for(int i = 0; i < 4; i++){
+    allFloorOff();
+    floor0[(4*i)%16] = HIGH;
+    floor0[(4*i+1)%16] = HIGH;
+    floor0[(4*i+2)%16] = HIGH;
+    floor0[(4*i+3)%16] = HIGH;  
+    
+    floor1[(4*i+4)%16] = HIGH;
+    floor1[(4*i+5)%16] = HIGH;
+    floor1[(4*i+6)%16] = HIGH;
+    floor1[(4*i+7)%16] = HIGH;    
+    
+    floor2[(4*i+8)%16] = HIGH;
+    floor2[(4*i+9)%16] = HIGH;
+    floor2[(4*i+10)%16] = HIGH;
+    floor2[(4*i+11)%16] = HIGH;    
+    
+    floor3[(4*i+12)%16] = HIGH;
+    floor3[(4*i+13)%16] = HIGH;
+    floor3[(4*i+14)%16] = HIGH;
+    floor3[(4*i+15)%16] = HIGH;
+    lightUp(floor0, floor1, floor2, floor3, 200);    
+  }
 }
 
 void randomWalk(){
@@ -135,6 +171,5 @@ void randomWalk(){
 void Rain(){
 }
 void loop(){
-  
-  
+  switchingRows();  
 }
