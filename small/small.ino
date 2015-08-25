@@ -8,6 +8,8 @@ int SRCLK_Pin = 10; //pin 11 on the 75HC595
 //do not touch
 #define numOfRegisterPins number_of_74hc595s * 8
 
+// 0-3 decides which floor to light up
+// 8-23 decides which column to light up 
 boolean registers[numOfRegisterPins];
 
 void setup(){
@@ -19,9 +21,6 @@ void setup(){
   //reset all register pins
   clearRegisters();
   writeRegisters();
-  for (int i = 0; i < 24; i++){
-    setRegisterPin(i, HIGH);
-  }
 }               
 
   
@@ -32,6 +31,7 @@ void clearRegisters(){
   }
 } 
 
+// set all register pins to HIGH
 void allFilled(){
   for(int i = numOfRegisterPins - 1; i >=  0; i--){
      registers[i] = HIGH;
@@ -70,51 +70,55 @@ void clearLittle(){
   }
 }
 
-void lightUp(bool first[], bool second[], bool third[], bool fourth[], bool repeat){
-  clearRegisters();
-  setRegisterPin(0, HIGH);
-  for(int i = 8; i < 24; i++){
-    if (first[i - 8]) {
-      setRegisterPin(i, HIGH);
-    } else {
-      setRegisterPin(i, LOW);
+// inputs four arrays that determine the pattern of each floor
+// this will light up each row at a time fast enough that it seems like all rows are litten up
+void lightUp(bool first[], bool second[], bool third[], bool fourth[], int repeat){
+  // repeat decides how long the pattern is going to last
+  for(int t = 0; t < repeat; t++){
+    clearRegisters();
+    setRegisterPin(0, HIGH); // turn on first floor
+    for(int i = 8; i < 24; i++){
+      if (first[i - 8]) {
+        setRegisterPin(i, HIGH);
+      } else {
+        setRegisterPin(i, LOW);
+      }
     }
-  }
-  writeRegisters();
-
-  clearRegisters();
-  setRegisterPin(1, HIGH);
-  for(int i = 8; i < 24; i++){
-    if (second[i - 8]) {
-      setRegisterPin(i, HIGH);
-    } else {
-      setRegisterPin(i, LOW);
+    writeRegisters();
+  
+    clearRegisters();
+    setRegisterPin(1, HIGH); // turn on second floor
+    for(int i = 8; i < 24; i++){
+      if (second[i - 8]) {
+        setRegisterPin(i, HIGH);
+      } else {
+        setRegisterPin(i, LOW);
+      }
     }
-  }
-  writeRegisters();
-
-  clearRegisters();
-  setRegisterPin(2, HIGH);
-  for(int i = 8; i < 24; i++){
-    if (third[i - 8]) {
-      setRegisterPin(i, HIGH);
-    } else {
-      setRegisterPin(i, LOW);
+    writeRegisters();
+  
+    clearRegisters();
+    setRegisterPin(2, HIGH); // turn on third floor
+    for(int i = 8; i < 24; i++){
+      if (third[i - 8]) {
+        setRegisterPin(i, HIGH);
+      } else {
+        setRegisterPin(i, LOW);
+      }
     }
-  }
-  writeRegisters();
-
-  clearRegisters();
-  setRegisterPin(3, HIGH);
-  for(int i = 8; i < 24; i++){
-    if (fourth[i - 8]) {
-      setRegisterPin(i, HIGH);
-    } else {
-      setRegisterPin(i, LOW);
+    writeRegisters();
+  
+    clearRegisters();
+    setRegisterPin(3, HIGH); // turn on fourth floor
+    for(int i = 8; i < 24; i++){
+      if (fourth[i - 8]) {
+        setRegisterPin(i, HIGH);
+      } else {
+        setRegisterPin(i, LOW);
+      }
     }
+    writeRegisters();
   }
-  writeRegisters();
-
   
 }
 void loop(){
