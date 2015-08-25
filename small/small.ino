@@ -11,6 +11,10 @@ int SRCLK_Pin = 10; //pin 11 on the 75HC595
 // 0-3 decides which floor to light up
 // 8-23 decides which column to light up 
 boolean registers[numOfRegisterPins];
+boolean floor0[16];
+boolean floor1[16];
+boolean floor2[16];
+boolean floor3[16];
 
 void setup(){
   pinMode(SER_Pin, OUTPUT);
@@ -77,6 +81,7 @@ void lightUp(bool first[], bool second[], bool third[], bool fourth[], int repea
   for(int t = 0; t < repeat; t++){
     clearRegisters();
     setRegisterPin(0, HIGH); // turn on first floor
+    // go through each column and decide which one to light up
     for(int i = 8; i < 24; i++){
       if (first[i - 8]) {
         setRegisterPin(i, HIGH);
@@ -121,41 +126,15 @@ void lightUp(bool first[], bool second[], bool third[], bool fourth[], int repea
   }
   
 }
-void loop(){
-   for (int i = 0; i <=3; i++){
-      clearRegisters();
-      setRegisterPin(i, HIGH);
-      for (int j = 8; j <= 23; j++){
-        clearLittle();
-        setRegisterPin(j, HIGH);
-        writeRegisters();
-        for (int k = 1; k<=20; k++){
-          clearRegisters();
-          writeRegisters();
-          delay(3);
-          setRegisterPin(i,HIGH);
-          setRegisterPin(j, HIGH);
-          if (j ==8){
-//            setRegisterPin(22, HIGH);
-            setRegisterPin(23, HIGH);
-          }
-          else if (j==9){
-//            setRegisterPin(23, HIGH);
-            setRegisterPin(8, HIGH);
-          }
-          else{
-//            setRegisterPin(j-2, HIGH);
-            setRegisterPin(j-1, HIGH);
-          }
-          writeRegisters();
-          delay(1);
-        }
-      }
-   }
-   
-   //setRegisterPin(1, HIGH);
-   //setRegisterPin(8,HIGH);
-   //setRegisterPin(9,HIGH);
-   //writeRegisters();   
+void switchingRows(){
+}
 
+void randomWalk(){
+}
+
+void Rain(){
+}
+void loop(){
+  
+  
 }
