@@ -161,15 +161,70 @@ void switchingRows(){
     floor3[(4*i+13)%16] = HIGH;
     floor3[(4*i+14)%16] = HIGH;
     floor3[(4*i+15)%16] = HIGH;
-    lightUp(floor0, floor1, floor2, floor3, 200);    
+    lightUp(floor0, floor1, floor2, floor3, 75);    
   }
 }
 
+//pattern of filling up the cube
+void fillingUp(){
+  allFloorOff();
+  fillEight(floor3, 0);
+  fillEight(floor3, 8);
+  fillReverseEight(floor2, 8);
+  fillReverseEight(floor2, 0);
+  fillEight(floor1, 0);
+  fillEight(floor1, 8);
+  fillReverseEight(floor0, 8);
+  fillReverseEight(floor0, 0);
+  
+}
+
+void fillEight(bool floorLoc[], int startPoint){
+  floorLoc[startPoint] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+1] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+2] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+3] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+7] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+6] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+5] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+4] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+}
+
+void fillReverseEight(bool floorLoc[], int startPoint){
+  floorLoc[startPoint+4] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+5] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+6] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+7] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+3] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+2] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint+1] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+  floorLoc[startPoint] = HIGH;
+  lightUp(floor0, floor1, floor2, floor3, 50);
+} 
 void randomWalk(){
+  
+  
 }
 
 void Rain(){
 }
 void loop(){
-  switchingRows();  
+  fillingUp();  
+  switchingRows();
+  switchingRows();
 }
