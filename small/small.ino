@@ -141,10 +141,10 @@ void allFloorOff(){
 //turn on all floor lights
 void allFloorOn(){
   for(int i = 0; i < 16; i++){
-    floor0[i] = LOW;
-    floor1[i] = LOW;
-    floor2[i] = LOW;
-    floor3[i] = LOW;
+    floor0[i] = HIGH;
+    floor1[i] = HIGH;
+    floor2[i] = HIGH;
+    floor3[i] = HIGH;
   }
 }
 
@@ -315,6 +315,14 @@ void randomWalk(){
 }
 
 void Rain(){
+}
+
+//infectious pattern
+void plague(){
+  
+}
+
+void randomLights(){
 }
 void loop(){
   fillingUp();  
