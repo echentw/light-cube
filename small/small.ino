@@ -41,14 +41,19 @@ void lightUp(bool first[], bool second[], bool third[], bool fourth[],
 void allFloorOff();
 void allFloorOn();
 
+/* light up a particular column */
+void lightUpCol(int index);
+
+void fillEight(bool floorLoc[], int startPoint);
+void fillReverseEight(bool floorLoc[], int startPoint);
+
 /* PATTERNS */
 void switchingRows();
 void reverseSwitchingRows();
 void switchingEmptyRows();
 void reverseSwitchingEmptyRows();
 void fillingUp();
-void fillEight(bool floorLoc[], int startPoint);
-void fillReverseEight(bool floorLoc[], int startPoint);
+void rotate(int size);
 
 // TODO: unimplemented patterns
 void randomWalk();
@@ -59,6 +64,12 @@ void randomLights();
 
 // MAIN LOOP
 void loop() {
+  rotate(1);
+  rotate(2);
+  rotate(3);
+  rotate(2);
+  rotate(1);
+
   fillingUp();
 
   switchingRows();
@@ -201,6 +212,13 @@ void allFloorOn() {
   }
 }
 
+void lightUpCol(int index) {
+  floor0[index] = HIGH;
+  floor1[index] = HIGH;
+  floor2[index] = HIGH;
+  floor3[index] = HIGH;
+}
+
 // pattern of moving rows
 void switchingRows() {
   for (int i = 0; i < SIZE; ++i) {
@@ -226,6 +244,19 @@ void switchingRows() {
     floor3[(SIZE * i + 14) % LAYER_SIZE] = HIGH;
     floor3[(SIZE * i + 15) % LAYER_SIZE] = HIGH;
 
+    lightUp(floor0, floor1, floor2, floor3, 75);
+  }
+}
+
+void rotate(int size) {
+  int length = 12;
+  int sequence[] = {0, 1, 2, 3, 7, 11, 15, 14, 13, 12, 8, 4};
+  for (int i = 0; i < length; ++i) {
+    allFloorOff();
+    for (int j = 0; j < size; ++j) {
+      lightUpCol(sequence[(i + j) % length]);
+      lightUpCol(LAYER_SIZE - 1 - sequence[(i + j) % length]);
+    }
     lightUp(floor0, floor1, floor2, floor3, 75);
   }
 }
