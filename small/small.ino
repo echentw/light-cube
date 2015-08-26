@@ -1,19 +1,17 @@
-// How many of the shift registers - change this
-#define NUM_74hc595s 3
+// constants
+#define NUM_74hc595s 3                // number of registers
+#define NUM_REG_PINS NUM_74hc595s * 8 // number of register pins
+#define SIZE 4                        // number of LEDs per edge
+#define LAYER_SIZE 16                 // number of LEDs per layer
 
-// do not touch
-#define NUM_REG_PINS NUM_74hc595s * 8
-
-#define SIZE 4          // number of LEDs per edge
-#define LAYER_SIZE 16   // number of LEDs per layer
-
+// pins
 int SER_Pin   = 8;   // pin 14 on the 75HC595
 int RCLK_Pin  = 9;   // pin 12 on the 75HC595
 int SRCLK_Pin = 10;  // pin 11 on the 75HC595
 
-// 0-3 decides which floor to light up
-// 8-23 decides which column to light up 
-boolean registers[NUM_REG_PINS];
+// registers
+bool registers[NUM_REG_PINS];   // 0-3 decides which layer to light up
+                                // 8-23 decides which column to light up
 bool floor0[LAYER_SIZE];
 bool floor1[LAYER_SIZE];
 bool floor2[LAYER_SIZE];
@@ -21,17 +19,29 @@ bool floor3[LAYER_SIZE];
 
 // helper functions
 void setup();
+
+/* set all registers to LOW or HIGH */
 void clearRegisters();
-void allFilled();
+void fillAllRegisters();
+
+/* pass values from floor1[] thru floor3[] to registers[] */
 void writeRegisters();
+
+/* set an individual pin to HIGH or LOW */
 void setRegisterPin(int index, int value);
-void clearLittle();
+
+/* set all registers for the layer to LOW */
+void clearLayer();
+
+/* light up the cube given each layer configuration */
 void lightUp(bool first[], bool second[], bool third[], bool fourth[],
              int repeat);
+
+/* set all floor arrays to either on or off */
 void allFloorOff();
 void allFloorOn();
 
-// patterns
+/* PATTERNS */
 void switchingRows();
 void reverseSwitchingRows();
 void switchingEmptyRows();
@@ -40,12 +50,12 @@ void fillingUp();
 void fillEight(bool floorLoc[], int startPoint);
 void fillReverseEight(bool floorLoc[], int startPoint);
 
-
 // TODO: unimplemented patterns
 void randomWalk();
 void rain();
 void plague();
 void randomLights();
+
 
 // MAIN LOOP
 void loop() {
@@ -82,15 +92,13 @@ void setup() {
   writeRegisters();
 }               
 
-// set all register pins to LOW
 void clearRegisters() {
   for (int i = 0; i < NUM_REG_PINS; ++i) {
     registers[i] = LOW;
   }
 } 
 
-// set all register pins to HIGH
-void allFilled() {
+void fillAllRegisters() {
   for (int i = 0; i < NUM_REG_PINS; ++i) {
     registers[i] = HIGH;
   }
@@ -109,12 +117,11 @@ void writeRegisters() {
   digitalWrite(RCLK_Pin, HIGH);
 }
 
-// set an individual pin HIGH or LOW
 void setRegisterPin(int index, int value) {
   registers[index] = value;
 }
 
-void clearLittle() {
+void clearLayer() {
   for (int i = 8; i < NUM_REG_PINS; ++i) {
     registers[i] = LOW;
   }
