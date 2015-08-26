@@ -11,7 +11,6 @@ int SER_Pin   = 8;   // pin 14 on the 75HC595
 int RCLK_Pin  = 9;   // pin 12 on the 75HC595
 int SRCLK_Pin = 10;  // pin 11 on the 75HC595
 
-
 // 0-3 decides which floor to light up
 // 8-23 decides which column to light up 
 boolean registers[NUM_REG_PINS];
@@ -58,7 +57,7 @@ void writeRegisters() {
 }
 
 // set an individual pin HIGH or LOW
-void setRegisterPin(int index, int value){
+void setRegisterPin(int index, int value) {
   registers[index] = value;
 }
 
@@ -124,7 +123,7 @@ void lightUp(bool first[], bool second[], bool third[], bool fourth[],
 
 // turn of all floor lights
 void allFloorOff() {
-  for(int i = 0; i < LAYER_SIZE; ++i){
+  for(int i = 0; i < LAYER_SIZE; ++i) {
     floor0[i] = LOW;
     floor1[i] = LOW;
     floor2[i] = LOW;
@@ -147,25 +146,25 @@ void switchingRows() {
   for (int i = 0; i < SIZE; ++i) {
     allFloorOff();
 
-    floor0[(SIZE*i)%LAYER_SIZE] = HIGH;
-    floor0[(SIZE*i+1)%LAYER_SIZE] = HIGH;
-    floor0[(SIZE*i+2)%LAYER_SIZE] = HIGH;
-    floor0[(SIZE*i+3)%LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i) % LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i + 1) % LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i + 2) % LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i + 3) % LAYER_SIZE] = HIGH;
 
-    floor1[(SIZE*i+4)%LAYER_SIZE] = HIGH;
-    floor1[(SIZE*i+5)%LAYER_SIZE] = HIGH;
-    floor1[(SIZE*i+6)%LAYER_SIZE] = HIGH;
-    floor1[(SIZE*i+7)%LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 4) % LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 5) % LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 6) % LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 7) % LAYER_SIZE] = HIGH;
 
-    floor2[(SIZE*i+8)%LAYER_SIZE] = HIGH;
-    floor2[(SIZE*i+9)%LAYER_SIZE] = HIGH;
-    floor2[(SIZE*i+10)%LAYER_SIZE] = HIGH;
-    floor2[(SIZE*i+11)%LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 8) % LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 9) % LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 10) % LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 11) % LAYER_SIZE] = HIGH;
 
-    floor3[(SIZE*i+12)%LAYER_SIZE] = HIGH;
-    floor3[(SIZE*i+13)%LAYER_SIZE] = HIGH;
-    floor3[(SIZE*i+14)%LAYER_SIZE] = HIGH;
-    floor3[(SIZE*i+15)%LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 12) % LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 13) % LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 14) % LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 15) % LAYER_SIZE] = HIGH;
 
     lightUp(floor0, floor1, floor2, floor3, 75);
   }
@@ -173,28 +172,28 @@ void switchingRows() {
 
 // pattern of moving rows the other direction
 void reverseSwitchingRows() {
-  for (int i = 3; i >= 0; --i) {
+  for (int i = SIZE - 1; i >= 0; --i) {
     allFloorOff();
 
-    floor0[(SIZE*i)%LAYER_SIZE] = HIGH;
-    floor0[(SIZE*i+1)%LAYER_SIZE] = HIGH;
-    floor0[(SIZE*i+2)%LAYER_SIZE] = HIGH;
-    floor0[(SIZE*i+3)%LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i) % LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i + 1) % LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i + 2) % LAYER_SIZE] = HIGH;
+    floor0[(SIZE * i + 3) % LAYER_SIZE] = HIGH;
 
-    floor1[(SIZE*i+4)%LAYER_SIZE] = HIGH;
-    floor1[(SIZE*i+5)%LAYER_SIZE] = HIGH;
-    floor1[(SIZE*i+6)%LAYER_SIZE] = HIGH;
-    floor1[(SIZE*i+7)%LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 4) % LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 5) % LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 6) % LAYER_SIZE] = HIGH;
+    floor1[(SIZE * i + 7) % LAYER_SIZE] = HIGH;
 
-    floor2[(SIZE*i+8)%LAYER_SIZE] = HIGH;
-    floor2[(SIZE*i+9)%LAYER_SIZE] = HIGH;
-    floor2[(SIZE*i+10)%LAYER_SIZE] = HIGH;
-    floor2[(SIZE*i+11)%LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 8) % LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 9) % LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 10) % LAYER_SIZE] = HIGH;
+    floor2[(SIZE * i + 11) % LAYER_SIZE] = HIGH;
 
-    floor3[(SIZE*i+12)%LAYER_SIZE] = HIGH;
-    floor3[(SIZE*i+13)%LAYER_SIZE] = HIGH;
-    floor3[(SIZE*i+14)%LAYER_SIZE] = HIGH;
-    floor3[(SIZE*i+15)%LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 12) % LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 13) % LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 14) % LAYER_SIZE] = HIGH;
+    floor3[(SIZE * i + 15) % LAYER_SIZE] = HIGH;
 
     lightUp(floor0, floor1, floor2, floor3, 75);
   }
@@ -205,25 +204,25 @@ void switchingEmptyRows(){
   for (int i = 0; i < SIZE; ++i) {
     allFloorOn();
 
-    floor0[(SIZE*i)%LAYER_SIZE] = LOW;
-    floor0[(SIZE*i+1)%LAYER_SIZE] = LOW;
-    floor0[(SIZE*i+2)%LAYER_SIZE] = LOW;
-    floor0[(SIZE*i+3)%LAYER_SIZE] = LOW;
+    floor0[(SIZE * i) % LAYER_SIZE] = LOW;
+    floor0[(SIZE * i + 1) % LAYER_SIZE] = LOW;
+    floor0[(SIZE * i + 2) % LAYER_SIZE] = LOW;
+    floor0[(SIZE * i + 3) % LAYER_SIZE] = LOW;
 
-    floor1[(SIZE*i+4)%LAYER_SIZE] = LOW;
-    floor1[(SIZE*i+5)%LAYER_SIZE] = LOW;
-    floor1[(SIZE*i+6)%LAYER_SIZE] = LOW;
-    floor1[(SIZE*i+7)%LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 4) % LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 5) % LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 6) % LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 7) % LAYER_SIZE] = LOW;
 
-    floor2[(SIZE*i+8)%LAYER_SIZE] = LOW;
-    floor2[(SIZE*i+9)%LAYER_SIZE] = LOW;
-    floor2[(SIZE*i+10)%LAYER_SIZE] = LOW;
-    floor2[(SIZE*i+11)%LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 8) % LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 9) % LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 10) % LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 11) % LAYER_SIZE] = LOW;
 
-    floor3[(SIZE*i+12)%LAYER_SIZE] = LOW;
-    floor3[(SIZE*i+13)%LAYER_SIZE] = LOW;
-    floor3[(SIZE*i+14)%LAYER_SIZE] = LOW;
-    floor3[(SIZE*i+15)%LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 12) % LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 13) % LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 14) % LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 15) % LAYER_SIZE] = LOW;
 
     lightUp(floor0, floor1, floor2, floor3, 75);
   }
@@ -231,28 +230,28 @@ void switchingEmptyRows(){
 
 // switching emptry rows
 void reverseSwitchingEmptyRows(){
-  for (int i = 3; i >= 0; --i) {
+  for (int i = SIZE - 1; i >= 0; --i) {
     allFloorOn();
 
-    floor0[(SIZE*i)%LAYER_SIZE] = LOW;
-    floor0[(SIZE*i+1)%LAYER_SIZE] = LOW;
-    floor0[(SIZE*i+2)%LAYER_SIZE] = LOW;
-    floor0[(SIZE*i+3)%LAYER_SIZE] = LOW;
+    floor0[(SIZE * i) % LAYER_SIZE] = LOW;
+    floor0[(SIZE * i + 1) % LAYER_SIZE] = LOW;
+    floor0[(SIZE * i + 2) % LAYER_SIZE] = LOW;
+    floor0[(SIZE * i + 3) % LAYER_SIZE] = LOW;
 
-    floor1[(SIZE*i+4)%LAYER_SIZE] = LOW;
-    floor1[(SIZE*i+5)%LAYER_SIZE] = LOW;
-    floor1[(SIZE*i+6)%LAYER_SIZE] = LOW;
-    floor1[(SIZE*i+7)%LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 4) % LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 5) % LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 6) % LAYER_SIZE] = LOW;
+    floor1[(SIZE * i + 7) % LAYER_SIZE] = LOW;
 
-    floor2[(SIZE*i+8)%LAYER_SIZE] = LOW;
-    floor2[(SIZE*i+9)%LAYER_SIZE] = LOW;
-    floor2[(SIZE*i+10)%LAYER_SIZE] = LOW;
-    floor2[(SIZE*i+11)%LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 8) % LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 9) % LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 10) % LAYER_SIZE] = LOW;
+    floor2[(SIZE * i + 11) % LAYER_SIZE] = LOW;
 
-    floor3[(SIZE*i+12)%LAYER_SIZE] = LOW;
-    floor3[(SIZE*i+13)%LAYER_SIZE] = LOW;
-    floor3[(SIZE*i+14)%LAYER_SIZE] = LOW;
-    floor3[(SIZE*i+15)%LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 12) % LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 13) % LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 14) % LAYER_SIZE] = LOW;
+    floor3[(SIZE * i + 15) % LAYER_SIZE] = LOW;
 
     lightUp(floor0, floor1, floor2, floor3, 75);
   }
@@ -273,36 +272,36 @@ void fillingUp() {
 void fillEight(bool floorLoc[], int startPoint) {
   floorLoc[startPoint] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+1] = HIGH;
+  floorLoc[startPoint + 1] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+2] = HIGH;
+  floorLoc[startPoint + 2] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+3] = HIGH;
+  floorLoc[startPoint + 3] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+7] = HIGH;
+  floorLoc[startPoint + 7] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+6] = HIGH;
+  floorLoc[startPoint + 6] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+5] = HIGH;
+  floorLoc[startPoint + 5] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+4] = HIGH;
+  floorLoc[startPoint + 4] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
 }
 
 void fillReverseEight(bool floorLoc[], int startPoint) {
-  floorLoc[startPoint+4] = HIGH;
+  floorLoc[startPoint + 4] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+5] = HIGH;
+  floorLoc[startPoint + 5] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+6] = HIGH;
+  floorLoc[startPoint + 6] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+7] = HIGH;
+  floorLoc[startPoint + 7] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+3] = HIGH;
+  floorLoc[startPoint + 3] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+2] = HIGH;
+  floorLoc[startPoint + 2] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-  floorLoc[startPoint+1] = HIGH;
+  floorLoc[startPoint + 1] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
   floorLoc[startPoint] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
@@ -313,7 +312,7 @@ void randomWalk() {
   // TODO: implement me!
 }
 
-void Rain() {
+void rain() {
   // TODO: implement me!
 }
 
@@ -322,11 +321,11 @@ void plague() {
   // TODO: implement me!
 }
 
-void randomLights(){
+void randomLights() {
   // TODO: implement me!
 }
 
-void loop(){
+void loop() {
   fillingUp();  
   switchingRows();
   switchingRows();
