@@ -138,6 +138,16 @@ void allFloorOff(){
   } 
 }
 
+//turn on all floor lights
+void allFloorOn(){
+  for(int i = 0; i < 16; i++){
+    floor0[i] = LOW;
+    floor1[i] = LOW;
+    floor2[i] = LOW;
+    floor3[i] = LOW;
+  }
+}
+
 //pattern of moving rows
 void switchingRows(){
   for(int i = 0; i < 4; i++){
@@ -165,6 +175,86 @@ void switchingRows(){
   }
 }
 
+//pattern of moving rows the other direction
+void reverseSwitchingRows(){
+  for(int i = 3; i >= 0; i--){
+    allFloorOff();
+    floor0[(4*i)%16] = HIGH;
+    floor0[(4*i+1)%16] = HIGH;
+    floor0[(4*i+2)%16] = HIGH;
+    floor0[(4*i+3)%16] = HIGH;  
+    
+    floor1[(4*i+4)%16] = HIGH;
+    floor1[(4*i+5)%16] = HIGH;
+    floor1[(4*i+6)%16] = HIGH;
+    floor1[(4*i+7)%16] = HIGH;    
+    
+    floor2[(4*i+8)%16] = HIGH;
+    floor2[(4*i+9)%16] = HIGH;
+    floor2[(4*i+10)%16] = HIGH;
+    floor2[(4*i+11)%16] = HIGH;    
+    
+    floor3[(4*i+12)%16] = HIGH;
+    floor3[(4*i+13)%16] = HIGH;
+    floor3[(4*i+14)%16] = HIGH;
+    floor3[(4*i+15)%16] = HIGH;
+    lightUp(floor0, floor1, floor2, floor3, 75);    
+  }
+}
+
+// switching emptry rows
+void switchingEmptyRows(){
+  for(int i = 0; i < 4; i++){
+    allFloorOn();
+    floor0[(4*i)%16] = LOW;
+    floor0[(4*i+1)%16] = LOW;
+    floor0[(4*i+2)%16] = LOW;
+    floor0[(4*i+3)%16] = LOW;  
+    
+    floor1[(4*i+4)%16] = LOW;
+    floor1[(4*i+5)%16] = LOW;
+    floor1[(4*i+6)%16] = LOW;
+    floor1[(4*i+7)%16] = LOW;    
+    
+    floor2[(4*i+8)%16] = LOW;
+    floor2[(4*i+9)%16] = LOW;
+    floor2[(4*i+10)%16] = LOW;
+    floor2[(4*i+11)%16] = LOW;    
+    
+    floor3[(4*i+12)%16] = LOW;
+    floor3[(4*i+13)%16] = LOW;
+    floor3[(4*i+14)%16] = LOW;
+    floor3[(4*i+15)%16] = LOW;
+    lightUp(floor0, floor1, floor2, floor3, 75);    
+  }
+}
+
+// switching emptry rows
+void reverseSwitchingEmptyRows(){
+  for(int i = 3; i >= 0; i--){
+    allFloorOn();
+    floor0[(4*i)%16] = LOW;
+    floor0[(4*i+1)%16] = LOW;
+    floor0[(4*i+2)%16] = LOW;
+    floor0[(4*i+3)%16] = LOW;  
+    
+    floor1[(4*i+4)%16] = LOW;
+    floor1[(4*i+5)%16] = LOW;
+    floor1[(4*i+6)%16] = LOW;
+    floor1[(4*i+7)%16] = LOW;    
+    
+    floor2[(4*i+8)%16] = LOW;
+    floor2[(4*i+9)%16] = LOW;
+    floor2[(4*i+10)%16] = LOW;
+    floor2[(4*i+11)%16] = LOW;    
+    
+    floor3[(4*i+12)%16] = LOW;
+    floor3[(4*i+13)%16] = LOW;
+    floor3[(4*i+14)%16] = LOW;
+    floor3[(4*i+15)%16] = LOW;
+    lightUp(floor0, floor1, floor2, floor3, 75);    
+  }
+}
 //pattern of filling up the cube
 void fillingUp(){
   allFloorOff();
@@ -216,6 +306,9 @@ void fillReverseEight(bool floorLoc[], int startPoint){
   floorLoc[startPoint] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
 } 
+
+
+//patternfor random flashing
 void randomWalk(){
   
   
@@ -227,4 +320,17 @@ void loop(){
   fillingUp();  
   switchingRows();
   switchingRows();
+  switchingRows();
+  switchingRows();
+  reverseSwitchingRows();
+  reverseSwitchingRows();
+  reverseSwitchingRows();
+  reverseSwitchingRows();  
+  fillingUp();
+  switchingEmptyRows();
+  switchingEmptyRows();
+  switchingEmptyRows();
+  reverseSwitchingEmptyRows();
+  reverseSwitchingEmptyRows();
+  reverseSwitchingEmptyRows();
 }
