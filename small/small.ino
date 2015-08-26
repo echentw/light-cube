@@ -19,6 +19,59 @@ bool floor1[LAYER_SIZE];
 bool floor2[LAYER_SIZE];
 bool floor3[LAYER_SIZE];
 
+// helper functions
+void setup();
+void clearRegisters();
+void allFilled();
+void writeRegisters();
+void setRegisterPin(int index, int value);
+void clearLittle();
+void lightUp(bool first[], bool second[], bool third[], bool fourth[],
+             int repeat);
+void allFloorOff();
+void allFloorOn();
+
+// patterns
+void switchingRows();
+void reverseSwitchingRows();
+void switchingEmptyRows();
+void reverseSwitchingEmptyRows();
+void fillingUp();
+void fillEight(bool floorLoc[], int startPoint);
+void fillReverseEight(bool floorLoc[], int startPoint);
+
+
+// TODO: unimplemented patterns
+void randomWalk();
+void rain();
+void plague();
+void randomLights();
+
+// MAIN LOOP
+void loop() {
+  fillingUp();
+
+  switchingRows();
+  switchingRows();
+  switchingRows();
+  switchingRows();
+
+  reverseSwitchingRows();
+  reverseSwitchingRows();
+  reverseSwitchingRows();
+  reverseSwitchingRows();
+
+  fillingUp();
+
+  switchingEmptyRows();
+  switchingEmptyRows();
+  switchingEmptyRows();
+
+  reverseSwitchingEmptyRows();
+  reverseSwitchingEmptyRows();
+  reverseSwitchingEmptyRows();
+}
+
 void setup() {
   pinMode(SER_Pin, OUTPUT);
   pinMode(RCLK_Pin, OUTPUT);
@@ -256,6 +309,7 @@ void reverseSwitchingEmptyRows(){
     lightUp(floor0, floor1, floor2, floor3, 75);
   }
 }
+
 // pattern of filling up the cube
 void fillingUp() {
   allFloorOff();
@@ -305,41 +359,4 @@ void fillReverseEight(bool floorLoc[], int startPoint) {
   lightUp(floor0, floor1, floor2, floor3, 50);
   floorLoc[startPoint] = HIGH;
   lightUp(floor0, floor1, floor2, floor3, 50);
-} 
-
-// pattern for random flashing
-void randomWalk() {
-  // TODO: implement me!
-}
-
-void rain() {
-  // TODO: implement me!
-}
-
-// infectious pattern
-void plague() {
-  // TODO: implement me!
-}
-
-void randomLights() {
-  // TODO: implement me!
-}
-
-void loop() {
-  fillingUp();  
-  switchingRows();
-  switchingRows();
-  switchingRows();
-  switchingRows();
-  reverseSwitchingRows();
-  reverseSwitchingRows();
-  reverseSwitchingRows();
-  reverseSwitchingRows();  
-  fillingUp();
-  switchingEmptyRows();
-  switchingEmptyRows();
-  switchingEmptyRows();
-  reverseSwitchingEmptyRows();
-  reverseSwitchingEmptyRows();
-  reverseSwitchingEmptyRows();
 }
