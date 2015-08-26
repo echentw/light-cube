@@ -169,7 +169,7 @@ void switchingRows() {
 
 // pattern of moving rows the other direction
 void reverseSwitchingRows() {
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 3; i >= 0; --i) {
     allFloorOff();
 
     floor0[(4*i)%16] = HIGH;
@@ -227,7 +227,7 @@ void switchingEmptyRows(){
 
 // switching emptry rows
 void reverseSwitchingEmptyRows(){
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 3; i >= 0; --i) {
     allFloorOn();
 
     floor0[(4*i)%16] = LOW;
