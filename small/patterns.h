@@ -4,6 +4,9 @@
 /* rotating columns */
 void rotate(int size);
 
+/* looks like a snake moving through the cube */
+void snake(int length);
+
 /* pattern of moving rows */
 void switchingRows();
 void reverseSwitchingRows();

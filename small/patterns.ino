@@ -13,6 +13,26 @@ void rotate(int size) {
   }
 }
 
+void snake(int length) {
+  int seq_length = 28;
+  int seq[][2] = {{0,  0}, {0,  1}, {0,  2}, {0,  3},
+                  {1,  3}, {2,  3}, {2,  7}, {2, 11},
+                  {2, 10}, {2,  9}, {2,  8}, {2, 12},
+                  {1, 12}, {0, 12}, {0, 13}, {0, 14},
+                  {0, 15}, {1, 15}, {2, 15}, {3, 15},
+                  {3, 11}, {3,  7}, {3,  3}, {3,  2},
+                  {3,  1}, {3,  0}, {2,  0}, {1,  0}};
+  for (int i = 0; i < seq_length; ++i) {
+    allLightsOff();
+    for (int j = 0; j < length; ++j) {
+      int layer = seq[(i + j) % seq_length][0];
+      int id = seq[(i + j) % seq_length][1];
+      lights[layer][id] = HIGH;
+    }
+    lightUp(lights, 100);
+  }
+}
+
 void switchingRows() {
   for (int i = 0; i < SIZE; ++i) {
     allLightsOff();

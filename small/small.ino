@@ -39,5 +39,7 @@ void loop() {
   reverseSwitchingEmptyRows();
   reverseSwitchingEmptyRows();
   reverseSwitchingEmptyRows();
+
+  snake(6);
 }
 
