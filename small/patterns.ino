@@ -16,27 +16,11 @@ void rotate(int size) {
 void switchingRows() {
   for (int i = 0; i < SIZE; ++i) {
     allLightsOff();
-
-    lights[0][(SIZE * i) % LAYER_SIZE] = HIGH;
-    lights[0][(SIZE * i + 1) % LAYER_SIZE] = HIGH;
-    lights[0][(SIZE * i + 2) % LAYER_SIZE] = HIGH;
-    lights[0][(SIZE * i + 3) % LAYER_SIZE] = HIGH;
-
-    lights[1][(SIZE * i + 4) % LAYER_SIZE] = HIGH;
-    lights[1][(SIZE * i + 5) % LAYER_SIZE] = HIGH;
-    lights[1][(SIZE * i + 6) % LAYER_SIZE] = HIGH;
-    lights[1][(SIZE * i + 7) % LAYER_SIZE] = HIGH;
-
-    lights[2][(SIZE * i + 8) % LAYER_SIZE] = HIGH;
-    lights[2][(SIZE * i + 9) % LAYER_SIZE] = HIGH;
-    lights[2][(SIZE * i + 10) % LAYER_SIZE] = HIGH;
-    lights[2][(SIZE * i + 11) % LAYER_SIZE] = HIGH;
-
-    lights[3][(SIZE * i + 12) % LAYER_SIZE] = HIGH;
-    lights[3][(SIZE * i + 13) % LAYER_SIZE] = HIGH;
-    lights[3][(SIZE * i + 14) % LAYER_SIZE] = HIGH;
-    lights[3][(SIZE * i + 15) % LAYER_SIZE] = HIGH;
-
+    for (int layer = 0; layer < SIZE; ++layer) {
+      for (int j = 0; j < SIZE; ++j) {
+        lights[layer][(SIZE * (i + layer) + j) % LAYER_SIZE] = HIGH;
+      }
+    }
     lightUp(lights, 75);
   }
 }
@@ -44,27 +28,11 @@ void switchingRows() {
 void reverseSwitchingRows() {
   for (int i = SIZE - 1; i >= 0; --i) {
     allLightsOff();
-
-    lights[0][(SIZE * i) % LAYER_SIZE] = HIGH;
-    lights[0][(SIZE * i + 1) % LAYER_SIZE] = HIGH;
-    lights[0][(SIZE * i + 2) % LAYER_SIZE] = HIGH;
-    lights[0][(SIZE * i + 3) % LAYER_SIZE] = HIGH;
-
-    lights[1][(SIZE * i + 4) % LAYER_SIZE] = HIGH;
-    lights[1][(SIZE * i + 5) % LAYER_SIZE] = HIGH;
-    lights[1][(SIZE * i + 6) % LAYER_SIZE] = HIGH;
-    lights[1][(SIZE * i + 7) % LAYER_SIZE] = HIGH;
-
-    lights[2][(SIZE * i + 8) % LAYER_SIZE] = HIGH;
-    lights[2][(SIZE * i + 9) % LAYER_SIZE] = HIGH;
-    lights[2][(SIZE * i + 10) % LAYER_SIZE] = HIGH;
-    lights[2][(SIZE * i + 11) % LAYER_SIZE] = HIGH;
-
-    lights[3][(SIZE * i + 12) % LAYER_SIZE] = HIGH;
-    lights[3][(SIZE * i + 13) % LAYER_SIZE] = HIGH;
-    lights[3][(SIZE * i + 14) % LAYER_SIZE] = HIGH;
-    lights[3][(SIZE * i + 15) % LAYER_SIZE] = HIGH;
-
+    for (int layer = 0; layer < SIZE; ++layer) {
+      for (int j = 0; j < SIZE; ++j) {
+        lights[layer][(SIZE * (i + layer) + j) % LAYER_SIZE] = HIGH;
+      }
+    }
     lightUp(lights, 75);
   }
 }
@@ -72,27 +40,11 @@ void reverseSwitchingRows() {
 void switchingEmptyRows(){
   for (int i = 0; i < SIZE; ++i) {
     allLightsOn();
-
-    lights[0][(SIZE * i) % LAYER_SIZE] = LOW;
-    lights[0][(SIZE * i + 1) % LAYER_SIZE] = LOW;
-    lights[0][(SIZE * i + 2) % LAYER_SIZE] = LOW;
-    lights[0][(SIZE * i + 3) % LAYER_SIZE] = LOW;
-
-    lights[1][(SIZE * i + 4) % LAYER_SIZE] = LOW;
-    lights[1][(SIZE * i + 5) % LAYER_SIZE] = LOW;
-    lights[1][(SIZE * i + 6) % LAYER_SIZE] = LOW;
-    lights[1][(SIZE * i + 7) % LAYER_SIZE] = LOW;
-
-    lights[2][(SIZE * i + 8) % LAYER_SIZE] = LOW;
-    lights[2][(SIZE * i + 9) % LAYER_SIZE] = LOW;
-    lights[2][(SIZE * i + 10) % LAYER_SIZE] = LOW;
-    lights[2][(SIZE * i + 11) % LAYER_SIZE] = LOW;
-
-    lights[3][(SIZE * i + 12) % LAYER_SIZE] = LOW;
-    lights[3][(SIZE * i + 13) % LAYER_SIZE] = LOW;
-    lights[3][(SIZE * i + 14) % LAYER_SIZE] = LOW;
-    lights[3][(SIZE * i + 15) % LAYER_SIZE] = LOW;
-
+    for (int layer = 0; layer < SIZE; ++layer) {
+      for (int j = 0; j < SIZE; ++j) {
+        lights[layer][(SIZE * (i + layer) + j) % LAYER_SIZE] = LOW;
+      }
+    }
     lightUp(lights, 75);
   }
 }
@@ -100,27 +52,11 @@ void switchingEmptyRows(){
 void reverseSwitchingEmptyRows(){
   for (int i = SIZE - 1; i >= 0; --i) {
     allLightsOn();
-
-    lights[0][(SIZE * i) % LAYER_SIZE] = LOW;
-    lights[0][(SIZE * i + 1) % LAYER_SIZE] = LOW;
-    lights[0][(SIZE * i + 2) % LAYER_SIZE] = LOW;
-    lights[0][(SIZE * i + 3) % LAYER_SIZE] = LOW;
-
-    lights[1][(SIZE * i + 4) % LAYER_SIZE] = LOW;
-    lights[1][(SIZE * i + 5) % LAYER_SIZE] = LOW;
-    lights[1][(SIZE * i + 6) % LAYER_SIZE] = LOW;
-    lights[1][(SIZE * i + 7) % LAYER_SIZE] = LOW;
-
-    lights[2][(SIZE * i + 8) % LAYER_SIZE] = LOW;
-    lights[2][(SIZE * i + 9) % LAYER_SIZE] = LOW;
-    lights[2][(SIZE * i + 10) % LAYER_SIZE] = LOW;
-    lights[2][(SIZE * i + 11) % LAYER_SIZE] = LOW;
-
-    lights[3][(SIZE * i + 12) % LAYER_SIZE] = LOW;
-    lights[3][(SIZE * i + 13) % LAYER_SIZE] = LOW;
-    lights[3][(SIZE * i + 14) % LAYER_SIZE] = LOW;
-    lights[3][(SIZE * i + 15) % LAYER_SIZE] = LOW;
-
+    for (int layer = 0; layer < SIZE; ++layer) {
+      for (int j = 0; j < SIZE; ++j) {
+        lights[layer][(SIZE * (i + layer) + j) % LAYER_SIZE] = LOW;
+      }
+    }
     lightUp(lights, 75);
   }
 }
