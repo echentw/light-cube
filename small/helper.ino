@@ -33,117 +33,83 @@ void clearLayer() {
   }
 }
 
-void lightUp(bool first[], bool second[], bool third[], bool fourth[],
-             int repeat) {
-  // repeat decides how long the pattern is going to last
+void lightUp(bool lights[][LAYER_SIZE], int repeat) {
   for (int t = 0; t < repeat; ++t) {
-    clearRegisters();
-    setRegisterPin(0, HIGH); // turn on first floor
-    // go through each column and decide which one to light up
-    for (int i = 8; i < NUM_REG_PINS; ++i) {
-      if (first[i - 8]) {
-        setRegisterPin(i, HIGH);
-      } else {
-        setRegisterPin(i, LOW);
+    for (int layer = 0; layer < SIZE; ++layer) {
+      clearRegisters();
+      setRegisterPin(layer, HIGH);
+      for (int i = 0; i < LAYER_SIZE; ++i) {
+        if (lights[layer][i]) {
+          setRegisterPin(i + 8, HIGH);
+        } else {
+          setRegisterPin(i + 8, LOW);
+        }
       }
+      writeRegisters();
     }
-    writeRegisters();
-
-    clearRegisters();
-    setRegisterPin(1, HIGH); // turn on second floor
-    for (int i = 8; i < NUM_REG_PINS; ++i) {
-      if (second[i - 8]) {
-        setRegisterPin(i, HIGH);
-      } else {
-        setRegisterPin(i, LOW);
-      }
-    }
-    writeRegisters();
-
-    clearRegisters();
-    setRegisterPin(2, HIGH); // turn on third floor
-    for (int i = 8; i < NUM_REG_PINS; ++i) {
-      if (third[i - 8]) {
-        setRegisterPin(i, HIGH);
-      } else {
-        setRegisterPin(i, LOW);
-      }
-    }
-    writeRegisters();
-
-    clearRegisters();
-    setRegisterPin(3, HIGH); // turn on fourth floor
-    for (int i = 8; i < NUM_REG_PINS; ++i) {
-      if (fourth[i - 8]) {
-        setRegisterPin(i, HIGH);
-      } else {
-        setRegisterPin(i, LOW);
-      }
-    }
-    writeRegisters();
   }
 }
 
-void allFloorOff() {
+void allLightsOff() {
   for(int i = 0; i < LAYER_SIZE; ++i) {
-    floor0[i] = LOW;
-    floor1[i] = LOW;
-    floor2[i] = LOW;
-    floor3[i] = LOW;
+    lights[0][i] = LOW;
+    lights[1][i] = LOW;
+    lights[2][i] = LOW;
+    lights[3][i] = LOW;
   }
 }
 
-void allFloorOn() {
+void allLightsOn() {
   for (int i = 0; i < LAYER_SIZE; ++i) {
-    floor0[i] = HIGH;
-    floor1[i] = HIGH;
-    floor2[i] = HIGH;
-    floor3[i] = HIGH;
+    lights[0][i] = HIGH;
+    lights[1][i] = HIGH;
+    lights[2][i] = HIGH;
+    lights[3][i] = HIGH;
   }
 }
 
 void lightUpCol(int index) {
-  floor0[index] = HIGH;
-  floor1[index] = HIGH;
-  floor2[index] = HIGH;
-  floor3[index] = HIGH;
+  lights[0][index] = HIGH;
+  lights[1][index] = HIGH;
+  lights[2][index] = HIGH;
+  lights[3][index] = HIGH;
 }
 
 void fillEight(bool floorLoc[], int startPoint) {
   floorLoc[startPoint] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 1] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 2] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 3] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 7] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 6] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 5] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 4] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
 }
 
 void fillReverseEight(bool floorLoc[], int startPoint) {
   floorLoc[startPoint + 4] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 5] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 6] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 7] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 3] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 2] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint + 1] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
   floorLoc[startPoint] = HIGH;
-  lightUp(floor0, floor1, floor2, floor3, 50);
+  lightUp(lights, 50);
 }
 

@@ -13,10 +13,9 @@ int SRCLK_Pin = 10;  // pin 11 on the 75HC595
 // registers
 bool registers[NUM_REG_PINS];   // 0-3 decides which layer to light up
                                 // 8-23 decides which column to light up
-bool floor0[LAYER_SIZE];
-bool floor1[LAYER_SIZE];
-bool floor2[LAYER_SIZE];
-bool floor3[LAYER_SIZE];
+
+// lights[i][j] controls the light in the i-th row and j-th column
+bool lights[SIZE][LAYER_SIZE];
 
 /* set all registers to LOW or HIGH */
 void clearRegisters();
@@ -32,20 +31,21 @@ void setRegisterPin(int index, int value);
 void clearLayer();
 
 /*
- * light up the cube given each layer configuration
+ * Light up the cube given each layer configuration
+ * repeat determines how long the lit configuration lasts.
  * Lights up each layer one at a time, fast enough for it to look like
  *   all layers are litten up at the same time.
  */
-void lightUp(bool first[], bool second[], bool third[], bool fourth[],
-             int repeat);
+void lightUp(bool lights[][LAYER_SIZE], int repeat);
 
-/* set all floor arrays to either on or off */
-void allFloorOff();
-void allFloorOn();
+/* set all lights to either on or off */
+void allLightsOff();
+void allLightsOn();
 
 /* light up a particular column */
 void lightUpCol(int index);
 
+/* helper functions for fillingUp() pattern */
 void fillEight(bool floorLoc[], int startPoint);
 void fillReverseEight(bool floorLoc[], int startPoint);
 
