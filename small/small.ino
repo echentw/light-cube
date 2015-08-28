@@ -12,6 +12,13 @@ void setup() {
 }               
 
 void loop() {
+  for (int i = 1; i < 16; ++i) {
+    randomLights(i);
+  }
+  for (int i = 14; i > 0; --i) {
+    randomLights(i);
+  }
+
   rotate(1);
   rotate(2);
   rotate(3);

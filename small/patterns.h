@@ -7,6 +7,9 @@ void rotate(int size);
 /* looks like a snake moving through the cube */
 void snake(int length);
 
+/* light up a random set of n lights */
+void randomLights(int n, int repeat);
+
 /* pattern of moving rows */
 void switchingRows();
 void reverseSwitchingRows();
@@ -22,7 +25,6 @@ void fillingUp();
 void randomWalk();
 void rain();
 void plague();
-void randomLights();
 
 #endif
 

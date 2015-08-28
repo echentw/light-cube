@@ -33,6 +33,18 @@ void snake(int length) {
   }
 }
 
+void randomLights(int n, int repeat) {
+  for (int t = 0; t < 3; ++t) {
+    allLightsOff();
+    for (int j = 0; j < n; ++j) {
+      int layer = random(SIZE);
+      int id = random(LAYER_SIZE);
+      lights[layer][id] = HIGH;
+    }
+    lightUp(lights, 200);
+  }
+}
+
 void switchingRows() {
   for (int i = 0; i < SIZE; ++i) {
     allLightsOff();
