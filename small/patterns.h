@@ -8,7 +8,7 @@ void rotate(int size);
 void snake(int length);
 
 /* light up a random set of n lights */
-void randomLights(int n, int repeat);
+void randomLights(int n, int repeat=3);
 
 /* pattern of moving rows */
 void switchingRows();

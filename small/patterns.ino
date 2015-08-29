@@ -34,7 +34,7 @@ void snake(int length) {
 }
 
 void randomLights(int n, int repeat) {
-  for (int t = 0; t < 3; ++t) {
+  for (int r = 0; r < repeat; ++r) {
     allLightsOff();
     for (int j = 0; j < n; ++j) {
       int layer = random(SIZE);

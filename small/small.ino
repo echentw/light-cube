@@ -27,26 +27,25 @@ void loop() {
 
   fillingUp();
 
-  switchingRows();
-  switchingRows();
-  switchingRows();
-  switchingRows();
-
-  reverseSwitchingRows();
-  reverseSwitchingRows();
-  reverseSwitchingRows();
-  reverseSwitchingRows();
+  for (int i = 0; i < 4; ++i) {
+    switchingRows();
+  }
+  for (int i = 0; i < 4; ++i) {
+    reverseSwitchingRows();
+  }
 
   fillingUp();
 
-  switchingEmptyRows();
-  switchingEmptyRows();
-  switchingEmptyRows();
+  for (int i = 0; i < 3; ++i) {
+    switchingEmptyRows();
+  }
 
-  reverseSwitchingEmptyRows();
-  reverseSwitchingEmptyRows();
-  reverseSwitchingEmptyRows();
+  for (int i = 0; i < 3; ++i) {
+    reverseSwitchingEmptyRows();
+  }
 
-  snake(6);
+  for (int i = 0; i < 2; ++i) {
+    snake(6);
+  }
 }
 
